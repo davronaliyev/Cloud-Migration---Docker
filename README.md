@@ -27,7 +27,7 @@ Download and Install Docker
 ```
 https://www.docker.com/products/docker-desktop
 ```
-If you need setup Docker environment follow below how to document
+* If you need setup Docker environment follow below how to document
 ```
 https://confluence.rsi.lexisnexis.com/display/SDEITG/Docker+Desktop+Setup
 ```
@@ -36,6 +36,14 @@ Clone this Repository
 ```
 git clone https://github.com/davronaliyev/Cloud-Migration-Docker.git
 ```
+Running your first container
+```
+docker run -d -p 80:80 docker/getting-started
+```
+
+
+
+
 
 
 
