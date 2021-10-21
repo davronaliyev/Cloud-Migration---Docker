@@ -22,5 +22,23 @@ Docker works by providing a standard way to run your code. Docker is an operatin
   <img src="/src/img/docker-containerized-appliction-blue-border_2.png" width="450" alt="accessibility text">
 </p>
 
+## Getting Started
+Download and Install Docker
+```
+https://www.docker.com/products/docker-desktop
+```
+If you need setup Docker environment follow below how to document
+```
+https://confluence.rsi.lexisnexis.com/display/SDEITG/Docker+Desktop+Setup
+```
+
+Clone this Repository
+```
+git clone https://github.com/davronaliyev/Cloud-Migration-Docker.git
+```
+
+
+
+
 
 
