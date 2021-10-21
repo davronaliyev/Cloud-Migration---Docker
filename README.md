@@ -18,8 +18,8 @@ Docker works by providing a standard way to run your code. Docker is an operatin
 </table>
 
 <p align="center">
-  <img src="/src/img/container-vm-whatcontainer_2.png" width="450" title="hover text">
-  <img src="/src/img/docker-containerized-appliction-blue-border_2.png" width="450" alt="accessibility text">
+  <img src="/src/img/container-vm-whatcontainer_2.png" width="400" title="hover text">
+  <img src="/src/img/docker-containerized-appliction-blue-border_2.png" width="400" alt="accessibility text">
 </p>
 
 ## Getting Started
