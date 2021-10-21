@@ -40,6 +40,7 @@ Running your first container
 ```
 docker run -d -p 80:80 docker/getting-started
 ```
+Once it has started, you can open your browser to http://localhost.
 
 
 
