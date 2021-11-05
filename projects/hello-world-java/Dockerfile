@@ -15,5 +15,5 @@ ENTRYPOINT ["sh", "-c", "java -jar /hello-world-java.jar"]
 
 #   Login:  docker login useast.jfrog.lexisnexisrisk.com
 #   Build:  docker image build -t hello-world-java:1.0 .
-#   Tag:    docker tag myapp:1.0 useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/myapp:1.0
-#   Push:   docker push useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/myapp:1.0
+#   Tag:    docker tag hello-world-java:1.0 useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/hello-world-java:1.0
+#   Push:   docker push useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/hello-world-java:1.0
