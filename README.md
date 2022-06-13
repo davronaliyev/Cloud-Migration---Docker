@@ -42,10 +42,26 @@ docker run -d -p 80:80 docker/getting-started
 ```
 Once it has started, you can open your browser to http://localhost.
 
+## Docker Image
+Build:    
+      
+      docker build -f YourDockerfile -t ImageName:latest .
+Run:      
 
+      docker run -it --entrypoint sh ImageName:latest
 
+### Build and Publish Docker Image to JFROG 
+    #   Login:  docker login jfrog.url.com
+    #   Build:  docker image build -t ImageName:latest .
+    #   Tag:    docker tag ImageName:latest jfrog.url.com/Repository/ImageName:latest
+    #   Push:   docker push jfrog.url.com/Repository/ImageName:latest
+    #   Pull:   docker pull jfrog.url.com/Repository/ImageName:latest
+    #   Run:    docker run -it --entrypoint=sh jfrog.url.com/Repository/ImageName:latest
 
-
+### Build and Publish Docker Image to GitLab
+    #   Login:  docker login gitlab.url.net: xxxx
+    #   Build:  docker image build -t gitlab.url.net: xxxx .
+    #   Push:   docker push gitlab.url.net: xxxx
 
 
 

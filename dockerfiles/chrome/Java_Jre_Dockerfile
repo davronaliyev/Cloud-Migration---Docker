@@ -1,0 +1,12 @@
+FROM amazoncorretto:8u332-alpine3.15-jre
+
+# Update apk repositories
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/main" > /etc/apk/repositories
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/community" >> /etc/apk/repositories
+RUN echo "http://dl-2.alpinelinux.org/alpine/edge/testing" >> /etc/apk/repositories
+
+RUN apk update
+
+# Install Chrome
+RUN apk add chromium
+RUN apk add chromium-chromedriver

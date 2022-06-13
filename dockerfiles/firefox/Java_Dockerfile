@@ -1,0 +1,17 @@
+# BUILD:    docker build -f Java_Dockerfile -t maven-firefox:latest .
+# RUN:      docker run -it --entrypoint sh maven-firefox:latest
+
+FROM selenium/standalone-firefox
+ARG Maven_Version=3.8.5
+
+# GET MAVEN
+USER root
+RUN apt-get install -y wget
+RUN wget --no-verbose -O /tmp/apache-maven-$Maven_Version.tar.gz http://archive.apache.org/dist/maven/maven-3/$Maven_Version/binaries/apache-maven-$Maven_Version-bin.tar.gz
+
+# INSTALL MAVEN
+RUN tar xzf /tmp/apache-maven-$Maven_Version.tar.gz -C /opt/
+RUN ln -s /opt/apache-maven-$Maven_Version /opt/maven
+RUN ln -s /opt/maven/bin/mvn /usr/local/bin
+RUN rm -f /tmp/apache-maven-$Maven_Version.tar.gz
+ENV MAVEN_HOME /opt/maven

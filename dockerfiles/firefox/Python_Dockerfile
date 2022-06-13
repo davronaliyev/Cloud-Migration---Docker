@@ -1,0 +1,16 @@
+# Build and Publish to JFROG 
+    #   Login:  docker login useast.jfrog.lexisnexisrisk.com
+    #   Build:  docker image build -t bdd-test-accurint-image:1.0 .
+    #   Tag:    docker tag bdd-test-accurint-image:1.0 useast.jfrog.lexisnexisrisk.com/sdet-bdd-test-accurint-local/bdd-test-accurint-image:1.0
+    #   Push:   docker push useast.jfrog.lexisnexisrisk.com/sdet-bdd-test-accurint-local/bdd-test-accurint-image:1.0
+    #   Pull:   docker pull useast.jfrog.lexisnexisrisk.com/sdet-bdd-test-accurint-local/bdd-test-accurint-image:1.0
+    #   Run:    docker run -it --entrypoint=sh useast.jfrog.lexisnexisrisk.com/sdet-bdd-test-accurint-local/bdd-test-accurint-image:1.0
+    #                  behave --version
+    
+FROM selenium/standalone-firefox
+
+# INSTALL PYTHON
+USER root
+RUN apt-get update && apt-get install python3-distutils -y
+RUN wget https://bootstrap.pypa.io/get-pip.py
+RUN python3 get-pip.py
