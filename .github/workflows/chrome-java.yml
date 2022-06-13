@@ -1,0 +1,71 @@
+name: Chrome with Java
+
+on:
+  workflow_dispatch:
+
+
+env:
+  REGISTRY: useast.jfrog.lexisnexisrisk.com
+  IMAGE_NAME: chrome-java
+
+jobs:
+  Build_Java_JDK:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the Docker Image
+        run: docker build . --file dockerfiles/Chrome/Java_Dockerfile --tag ${{ env.IMAGE_NAME }} --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Login to JFrog Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.Jfrog_username }}
+          password: ${{ secrets.Jfrog_token }}
+
+      - name: Tag and Push
+        run: |
+          docker tag ${{ env.IMAGE_NAME }} "${{ env.REGISTRY }}/sdet-base-images/${{ env.IMAGE_NAME }}:jdk"
+          docker push "${{ env.REGISTRY }}/sdet-base-images/${{ env.IMAGE_NAME }}:jdk"
+
+  Build_Java_JRE:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the Docker Image
+        run: docker build . --file dockerfiles/Chrome/Java_Jre_Dockerfile --tag ${{ env.IMAGE_NAME }} --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Login to JFrog Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.Jfrog_username }}
+          password: ${{ secrets.Jfrog_token }}
+
+      - name: Tag and Push
+        run: |
+          docker tag ${{ env.IMAGE_NAME }} "${{ env.REGISTRY }}/sdet-base-images/${{ env.IMAGE_NAME }}:jre8"
+          docker push "${{ env.REGISTRY }}/sdet-base-images/${{ env.IMAGE_NAME }}:jre8"   
+
+       
+  Build_Java_JRE_11:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Build the Docker Image
+        run: docker build . --file dockerfiles/Chrome/Java_jre11_Dockerfile --tag ${{ env.IMAGE_NAME }} --label "runnumber=${GITHUB_RUN_ID}"
+
+      - name: Login to JFrog Container Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ secrets.Jfrog_username }}
+          password: ${{ secrets.Jfrog_token }}
+
+      - name: Tag and Push
+        run: |
+          docker tag ${{ env.IMAGE_NAME }} "${{ env.REGISTRY }}/sdet-base-images/${{ env.IMAGE_NAME }}:jre11"
+          docker push "${{ env.REGISTRY }}/sdet-base-images/${{ env.IMAGE_NAME }}:jre11" 

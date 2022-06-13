@@ -1,12 +1,3 @@
-
-
-#   Login:  docker login useast.jfrog.lexisnexisrisk.com
-#   Build:  docker image build -t myapp:1.0 .
-#   Tag:    docker tag myapp:1.0 useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/myapp:1.0
-#   Push:   docker push useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/myapp:1.0
-#   Pull:   docker pull useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/myapp:1.0
-#   Run:    docker run -d -p 80:80 useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/myapp:1.0
-
 #   docker pull rsgsdet/java-app:0.0.1
 #   docker tag rsgsdet/java-app:0.0.1 useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/java-app
 #   docker push useast.jfrog.lexisnexisrisk.com/asd-docker-dev-local/java-app

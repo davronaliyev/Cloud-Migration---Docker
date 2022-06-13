@@ -1,0 +1,136 @@
+name: Azure Container Registry
+
+on:
+  workflow_dispatch:
+
+
+env:
+  IMAGE_NAME: chrome-java
+
+jobs:
+  Chrome_Java_JDK:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build the Docker Image
+        run: docker build . --file dockerfiles/Chrome/Java_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:jdk
+
+      - name: Deploy the Docker Image
+        run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:jdk
+
+  Chrome_Java_JRE_8:
+    runs-on: ubuntu-latest
+    needs: Chrome_Java_JDK
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build the Docker Image
+        run: docker build . --file dockerfiles/Chrome/Java_Jre_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:jre8
+
+      - name: Deploy the Docker Image
+        run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:jre8
+      
+  Chrome_Java_JRE_11:
+    runs-on: ubuntu-latest
+    needs: Chrome_Java_JRE_8
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build the Docker Image
+        run: docker build . --file dockerfiles/Chrome/Java_jre11_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:jre11
+
+      - name: Deploy the Docker Image
+        run: docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/${{ env.IMAGE_NAME }}:jre11
+        
+  Chrome_Python:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build and Deploy Docker Image
+        run: |
+          docker build . --file dockerfiles/Chrome/Python_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/chrome-python:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/chrome-python:latest
+
+  Chrome_Python_Slim:
+    runs-on: ubuntu-latest
+    needs: Chrome_Python
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build and Deploy Docker Image
+        run: |
+          docker build . --file dockerfiles/Chrome/Python_Slim_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/chrome-python:slim
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/chrome-python:slim
+
+  Firefox_Java:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build and Deploy Docker Image
+        run: |
+          docker build . --file dockerfiles/Firefox/Java_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/firefox-java:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/firefox-java:latest
+
+  Firefox_Python:
+    runs-on: ubuntu-latest
+    needs: Firefox_Java
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: 'Login to Azure Container Instances'
+        uses: azure/docker-login@v1
+        with:
+          login-server: ${{ secrets.REGISTRY_LOGIN_SERVER }}
+          username: ${{ secrets.REGISTRY_USERNAME }}
+          password: ${{ secrets.REGISTRY_PASSWORD }}  
+
+      - name: Build and Deploy Docker Image
+        run: |
+          docker build . --file dockerfiles/Firefox/Python_Dockerfile --tag ${{ secrets.REGISTRY_LOGIN_SERVER }}/firefox-python:latest
+          docker push ${{ secrets.REGISTRY_LOGIN_SERVER }}/firefox-python:latest
+

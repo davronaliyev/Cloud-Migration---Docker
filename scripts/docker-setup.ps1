@@ -60,7 +60,7 @@
 Write-Output "***************** Installation Started *****************"
 
 Write-Output "***************** Installing Chocolatey *****************"
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+Set-ExecutionPolicy Bypass -Scope Process -Force; Invoke-Expression ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 
 Write-Output "***************** Installing Docker Desktop *****************"
 choco install docker-desktop -y
