@@ -63,7 +63,73 @@ Run:
     #   Build:  docker image build -t gitlab.url.net: xxxx .
     #   Push:   docker push gitlab.url.net: xxxx
 
+## Docker Network
+      
+Create new "my-net" network
+
+      docker network create my-net
+      docker network ls
+
+Inspect the network
+
+      docker network inspect my-net
+
+Create your four containers. Notice the --network flags. You can only connect to one network during the docker run command, so you need to use docker network connect afterward to connect alpine4 to the bridge network as well
 
 
+      docker run -dit --name alpine1 --network my-net alpine
+      docker run -dit --name alpine2 --network my-net alpine
+      docker run -dit --name alpine3 alpine
+      docker run -dit --name alpine4 --network my-net alpine
+      docker network connect bridge alpine4
+
+ Let’s connect to alpine1 and test this out. alpine1 should be able to resolve alpine2 and alpine4 (and alpine1, itself) to IP addresses.
+
+      docker container attach alpine1
+
+      # ping -c 2 alpine2
+      # ping -c 2 alpine4
+      # ping -c 2 alpine3
+
+Check the IP address
+      
+      docker inspect alpine1 | grep IPAddress
+
+Stop and remove all containers and the alpine-net network
+
+      docker container stop alpine1 alpine2 alpine3 alpine4
+
+      docker container rm alpine1 alpine2 alpine3 alpine4
+
+      docker network rm alpine-net
+
+## Docker Volume
+Create new volume
+
+      docker volume create --name DataVolume
+      docker volume ls
+
+Let's run new container with DataVolume
+
+      docker run -dit --network=my-net -v DataVolume:/testData --name=container1 alpine
+
+We will create file inside testData folder
+
+      docker container attach container1
+
+      # cd testData
+      # echo "Share this file between containers" > /testData/myscript.sh
+
+Now let's create new container with DataVolume and check if file we created is attached
+
+      docker run -dit --network=my-net -v DataVolume:/testData --name=container2 alpine
+
+      docker container attach container2
+
+      # cd testData
+
+Copy file to container from local
+
+      docker cp ./data.xml container1:/root/data.xml
 
 
