@@ -21,24 +21,15 @@ Docker works by providing a standard way to run your code. Docker is an operatin
 </p>
 
 ## Getting Started
-Download and Install Docker
+Install Docker Desktop
 ```
-https://www.docker.com/products/docker-desktop
-```
-* If you need setup Docker environment follow below how to document
-```
-https://confluence.rsi.lexisnexis.com/display/SDEITG/Docker+Desktop+Setup
-```
-
-Clone this Repository
-```
-git clone https://github.com/davronaliyev/Cloud-Migration-Docker.git
+sripts/docker-setup.ps1
 ```
 Running your first container
 ```
 docker run -d -p 80:80 docker/getting-started
 ```
-Once it has started, you can open your browser to http://localhost.
+Once it has started, you can open your browser to http://localhost
 
 ## Docker Image
 Build:    
