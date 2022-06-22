@@ -4,6 +4,7 @@
 * [Why use Linux?](#why-use-linux)
 * [Where is Linux deployed?](#where-is-linux-deployed)
 * [Linux Distros](#linux-distros)
+* [Linux Commands Cheatsheet](#LinuxCommands.pdf)
 
 # Linux commands
 
