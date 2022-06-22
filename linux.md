@@ -1,15 +1,11 @@
 # <a name="linux-introduction"></a>Linux Introduction
 
-**Table of Contents**
-
 * [What is Linux?](#what-is-linux)
 * [Why use Linux?](#why-use-linux)
 * [Where is Linux deployed?](#where-is-linux-deployed)
 * [Linux Distros](#linux-distros)
 
 # Linux commands
-
-**Table of Contents**
 
 * [**User information**](#user-information)
 * [**File and directory commands**](#file-and-directory-commands)  
@@ -20,7 +16,7 @@
 * [**System and Hardware information**](#system-and-hardware-information)
 * [**Search Files**](#search-files)
 * [**SSH**](#ssh)
-* [**Vi/Vim-commands**](#vi/vim-commands)
+* [**Vi/Vim-commands**](#vim-commands)
 
 ## <a name="what-is-linux"></a>What is Linux?
 
@@ -758,7 +754,7 @@ sudo sshd service restart
 
 **[⬆ Back to Top](#table-of-contents)**
 
-### Vi/Vim-commands
+### Vim-commands
 
 Vi editor is the most popular text editor from the early days of Unix. Whereas Vim(Vi IMproved) is an improved version of vi editor to be used in CLI (command line interface) for mainly text editing tasks in many configuration files. Some of the other alternatives are Elvis, Nvi, Nano, Joe, and Vile.
 It has two main operation modes,
