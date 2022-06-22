@@ -1,5 +1,6 @@
 
 **Table of Contents**
 
-* [**Linux**](/linux.md)
-* [**Docker**](/docker-starter.md)
+* [**Linux**](/src/linux.md)
+* [**Docker**](/src/docker-starter.md)
+* [**Git**](/src/git.md)
