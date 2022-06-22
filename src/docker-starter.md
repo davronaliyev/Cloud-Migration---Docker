@@ -3,6 +3,7 @@
 * [Docker Image](#Docker-Image)
 * [Docker Network](#Docker-Network)
 * [Docker Volume](#Docker-Volume)
+* [Docker Swarm](#Docker-Swarm)
 * [Install Docker Engine on Ubuntu](#Install-Docker-Engine-on-Ubuntu)
 
 ##	What is Docker? 
@@ -156,10 +157,23 @@ Copy file to container from local
 
         $ sudo docker run hello-world
 
-
-
 Uninstall Docker Engine
 
     $  sudo apt-get purge docker-ce docker-ce-cli containerd.io
 
 Reference: https://docs.docker.com/engine/install/ubuntu/
+
+
+## Docker Swarm
+
+[Swarm Guide](/swarm/swarm-guide.md)
+
+Docker Swarm is a native clustering tool for Docker which turns multiple Docker engines into a cluster and makes that a cluster by making it look like a single Docker engine. It's easier to install than any other container orchestrator. This way, you can create a pool of Virtual Machines that are container hosts and scale out your applications using Docker as if you were using a single VM.
+
+Lets make first node a manager.
+
+      docker swarm init --advertise-addr $(hostname -i)
+
+This will create token for us then we need use that token on other node.
+
+Copy the join command (watch out for newlines) output and paste it in the other terminal.
