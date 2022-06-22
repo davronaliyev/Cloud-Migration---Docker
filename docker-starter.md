@@ -1,3 +1,7 @@
+**Table of Contents**
+* [What is Docker?](#what-is-docker?)
+* [Install Docker Engine on Ubuntu](#Install-Docker-Engine-on-Ubuntu)
+
 ##	What is Docker? 
 Docker is a software platform that allows you to build, test, and deploy applications quickly. Docker packages software into standardized units called containers that have everything the software needs to run including libraries, system tools, code, and runtime. Using Docker, you can quickly deploy and scale applications into any environment and know your code will run.
 
@@ -120,3 +124,39 @@ Now let's create new container with DataVolume and check if file we created is a
 Copy file to container from local
 
       docker cp ./data.xml container1:/root/data.xml
+
+## Install Docker Engine on Ubuntu
+
+    1. Update the apt package index and install packages to allow apt to use a repository over HTTPS:
+         $ sudo apt-get update
+         $ sudo apt-get install \
+            apt-transport-https \
+            ca-certificates \
+            curl \
+            gnupg \
+            lsb-release
+
+    2. Add Docker’s official GPG key:
+        $ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+        
+    3. Use the following command to set up the stable repository. 
+        $  echo \
+          "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+          $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+    
+    4. Update the apt package index, and install the latest version of Docker Engine and containerd:
+
+        $ sudo apt-get update
+        $ sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+    5. Verify that Docker Engine is installed correctly by running the hello-world image.
+
+        $ sudo docker run hello-world
+
+
+
+Uninstall Docker Engine
+
+    $  sudo apt-get purge docker-ce docker-ce-cli containerd.io
+
+Reference: https://docs.docker.com/engine/install/ubuntu/
